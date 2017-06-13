@@ -17,12 +17,14 @@ class RavenBot < SlackRubyBot::Bot
 
   command 'search' do |client, data, _match|
     # results = HTTParty.get("https://earlybirdsearch.herokuapp.com/?business=#{expression}&location=94105")
-    client.say(text: "Searching for potential clients related to: sushi.\n Please wait 10-15 seconds.", channel: data.channel)
+
+    client.say(text: ARGV[0], channel: data.channel)
+    client.say(text: "Searching for potential clients related to: sushi.\n Please wait 10-15 seconds <@#{data.user}>.", channel: data.channel)
     results = HTTParty.get("https://earlybirdsearch.herokuapp.com/?business=sushi&location=94105")
-    results["data"].each do |business|
+    results["data"].each_with_index do |business, ranking|
       business_name = business["name"]
       business_url = business["url"].split('?').first
-      client.say(text: "#{business_name} : #{business_url}", channel: data.channel)
+      client.say(text: "Result #{ranking + 1}: #{business_name} : #{business_url}", channel: data.channel)
     end
   end
 
