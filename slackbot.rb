@@ -4,7 +4,7 @@ require 'httparty'
  QUOTES = ["The early bird gets the worm! - Mina", "There is an art to the process of problem solving - Mike Tarkington", "Efficiency Focused - it's always important to work smart in addition to working hard - Mike Tarkington", "Creative Solutions - even the most difficult challenges can be overcome with creativity and cleverness - Mike Tarkington", "You miss all the shots you don't take - Wayne Gretzky - Michael Scott", "Fart - Omar Cameron", "They Don't Think It Be Like It Is But It Do - Max Peiros", "Has Anyone Really Been Far Even as Decided to Use Even Go Want to do Look More Like? - Patrick Tangphao", "We did the thing - Earl Sabal", "That's Amazing! - Helen Khumthong"]
 
 
-COMMAND_LIST = "Type 'search' followed by a term to search for potential clients based on your search criteria. Raven limits searches to the '94105' zipcode. \n Additional commands: 'about' , 'quote' "
+COMMAND_LIST = "Type 'search' followed by a term to search for potential clients based on your search criteria. Raven limits searches to the '94105' zipcode. \n Additional commands: 'about', 'help', 'quote' "
 
 class RavenBot < SlackRubyBot::Bot
   command 'help' do |client, data, _match|
@@ -17,7 +17,7 @@ class RavenBot < SlackRubyBot::Bot
 
   command 'search' do |client, data, _match|
     # results = HTTParty.get("https://earlybirdsearch.herokuapp.com/?business=#{expression}&location=94105")
-    client.say(text: "Searching for potential clients related to: sushi", channel: data.channel)
+    client.say(text: "Searching for potential clients related to: sushi.\n Please wait 10-15 seconds.", channel: data.channel)
     results = HTTParty.get("https://earlybirdsearch.herokuapp.com/?business=sushi&location=94105")
     results["data"].each do |business|
       business_name = business["name"]
