@@ -1,13 +1,15 @@
 require 'slack-ruby-bot'
 
-class Raven < SlackRubyBot::Bot
-  command 'ping' do |client, data, match|
-    client.say(text: "I will rain down an ungodly firestorm.", channel: data.channel)
+class RavenBot < SlackRubyBot::Bot
+  command 'ping' do |client, data, _match|
+    client.say(text: 'pong', channel: data.channel)
   end
 
-  command 'about' do |client, data, match|
-    client.say(text: "#DreamTeam - Max Peiros(Model), Helen Khumthong(Controller), Mina Melosh(View), Earl Sabal(Helpers), Patrick Tangphao(Schema)")
+  command 'about' do |client, data, _match|
+    client.say(text: '#DreamTeam - EarlBird 2017 (github.com/earlyravens) - Max Peiros - (github.com/mpeiros), Mina Melosh (github.com/minamelosh), Earl Sabal (github.com/earlsabal), Helen Khumthong (github.com/tamietta), Patrick Tangphao (github.com/ptangphao)', channel: data.channel)
   end
 end
 
-Raven.run
+SlackRubyBot::Client.logger.level = Logger::WARN
+
+RavenBot.run
