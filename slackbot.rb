@@ -4,16 +4,16 @@ require 'slackbot_helper'
 
 class RavenBot < SlackRubyBot::Bot
   command 'help' do |client, data, _match|
-    client.say(text: COMMAND_LIST, channel: data.channel)
+    help_display
   end
 
   command 'quote' do |client, data, _match|
-    client.say(text: QUOTES.sample, channel: data.channel)
+    generate_random_quote
   end
 
   command 'search' do |client, data, _match|
     begin
-      search_term = _match.to_s.split("search").last
+      search_term = extract_search_term(_match)
       if search_term == "#{BOT_NAME} "
          client.say(text: "Please enter a valid input (e.g. 'search sushi')", channel: data.channel)
       else

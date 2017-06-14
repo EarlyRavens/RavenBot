@@ -8,3 +8,14 @@ API_END_POINT = "https://earlybirdsearch.herokuapp.com/"
 
 BOT_NAME = "raven"
 
+def help_display
+  client.say(text: COMMAND_LIST, channel: data.channel)
+end
+
+def generate_random_quote
+  client.say(text: QUOTES.sample, channel: data.channel)
+end
+
+def extract_search_term(input)
+  input.to_s.split("search").last
+end
