@@ -13,9 +13,9 @@ class RavenBot < SlackRubyBot::Bot
 
   command 'search' do |client, data, _match|
     begin
-      search_term = _match.to_s.split("search").last
-      if search_term == "#{BOT_NAME} "
-         client.say(text: "Please enter a valid input (e.g. 'search sushi')", channel: data.channel)
+      search_term = extract_search_term(_match)
+      if invalid_search(search_term)
+        invalid_input_message(client,data)
       else
         client.say(text: "Searching for potential clients related to: #{search_term}\n Please wait 10-15 seconds", channel: data.channel)
         results = HTTParty.get("#{API_END_POINT}?business=#{search_term}}&location=94105")

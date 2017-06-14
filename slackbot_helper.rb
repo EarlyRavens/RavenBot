@@ -23,3 +23,7 @@ end
 def invalid_search(input)
   input == "#{BOT_NAME} "
 end
+
+def invalid_input_message(client,data)
+  client.say(text: "Please enter a valid input (e.g. 'search sushi')", channel: data.channel)
+end
