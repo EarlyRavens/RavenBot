@@ -31,3 +31,15 @@ end
 def begin_search_message(search_term,client,data)
   client.say(text: "Searching for potential clients related to: #{search_term}\n Please wait 10-15 seconds", channel: data.channel)
 end
+
+def query_earlybird_api(search_term)
+  HTTParty.get("#{API_END_POINT}?business=#{search_term}}&location=94105")
+end
+
+def no_results(search_results)
+  search_results["data"].empty?
+end
+
+def no_results_message(client,data)
+  client.say(text: "No results found.", channel: data.channel)
+end

@@ -18,9 +18,9 @@ class RavenBot < SlackRubyBot::Bot
         invalid_input_message(client,data)
       else
         begin_search_message(search_term,client,data)
-        results = HTTParty.get("#{API_END_POINT}?business=#{search_term}}&location=94105")
-        if results["data"].empty?
-          client.say(text: "No results found.", channel: data.channel)
+        results = query_earlybird_api(search_term)
+        if no_results(results)
+          no_results_message(client,data)
         else
           results["data"].each_with_index do |business, ranking|
             business_name = business["name"]
