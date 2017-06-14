@@ -22,15 +22,11 @@ class RavenBot < SlackRubyBot::Bot
         if no_results(results)
           no_results_message(client,data)
         else
-          results["data"].each_with_index do |business, ranking|
-            business_name = business["name"]
-            business_url = business["url"].split('?').first
-            client.say(text: "Result #{ranking + 1}: #{business_name} : #{business_url}", channel: data.channel)
-          end
+          display_results(results,client,data)
         end
       end
     rescue
-      client.say(text: "An error occurred, please try again later.", channel: data.channel)
+      error_message(client,data)
     end
   end
 

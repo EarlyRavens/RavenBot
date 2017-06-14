@@ -44,6 +44,15 @@ def no_results_message(client,data)
   client.say(text: "No results found.", channel: data.channel)
 end
 
+def display_results(results,client,data)
+  result_data = results["data"]
+  result_data.each_with_index do |business, ranking|
+    business_name = business["name"]
+    business_url = business["url"].split('?').first
+    client.say(text: "Result #{ranking + 1}: #{business_name} : #{business_url}", channel: data.channel)
+  end
+end
+
 def error_message(client,data)
   client.say(text: "An error occurred, please try again later.", channel: data.channel)
 end
