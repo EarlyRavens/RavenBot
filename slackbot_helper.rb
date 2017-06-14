@@ -19,3 +19,6 @@ end
 def extract_search_term(input)
   input.to_s.split("search").last
 end
+
+def invalid_search(input)
+end
