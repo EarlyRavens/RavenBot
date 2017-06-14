@@ -2,6 +2,7 @@ require 'slack-ruby-bot'
 require 'httparty'
 require_relative 'slackbot_helper'
 require_relative 'poe'
+require_relative 'slackbot_variables'
 
 class RavenBot < SlackRubyBot::Bot
   command 'help' do |client, data, _match|
@@ -37,6 +38,10 @@ class RavenBot < SlackRubyBot::Bot
 
   command 'nevermore' do |client, data, _match|
     nevermore(client,data)
+  end
+
+  command 'more' do |client, data, _match|
+    more(client,data)
   end
 end
 
