@@ -35,7 +35,7 @@ class RavenBot < SlackRubyBot::Bot
   end
 
   command 'about' do |client, data, _match|
-
+    about_message(client,data)
   end
 end
 
