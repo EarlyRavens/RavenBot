@@ -17,7 +17,7 @@ class RavenBot < SlackRubyBot::Bot
       if invalid_search(search_term)
         invalid_input_message(client,data)
       else
-        client.say(text: "Searching for potential clients related to: #{search_term}\n Please wait 10-15 seconds", channel: data.channel)
+        begin_search_message(search_term,client,data)
         results = HTTParty.get("#{API_END_POINT}?business=#{search_term}}&location=94105")
         if results["data"].empty?
           client.say(text: "No results found.", channel: data.channel)

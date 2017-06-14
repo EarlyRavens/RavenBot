@@ -27,3 +27,7 @@ end
 def invalid_input_message(client,data)
   client.say(text: "Please enter a valid input (e.g. 'search sushi')", channel: data.channel)
 end
+
+def begin_search_message(search_term,client,data)
+  client.say(text: "Searching for potential clients related to: #{search_term}\n Please wait 10-15 seconds", channel: data.channel)
+end
