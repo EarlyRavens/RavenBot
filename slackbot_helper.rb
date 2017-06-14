@@ -43,3 +43,8 @@ end
 def no_results_message(client,data)
   client.say(text: "No results found.", channel: data.channel)
 end
+
+
+def about_message(client,data)
+  client.say(text: '#DreamTeam - EarlyBird 2017 (github.com/earlyravens) - Max Peiros - (github.com/mpeiros), Mina Melosh (github.com/minamelosh), Earl Sabal (github.com/earlsabal), Helen Khumthong (github.com/tamietta), Patrick Tangphao (github.com/ptangphao). Created June 13, 2017.', channel: data.channel)
+end
