@@ -21,4 +21,5 @@ def extract_search_term(input)
 end
 
 def invalid_search(input)
+
 end
